@@ -23,7 +23,7 @@ const shouldHide = () => {
         <input
             type="text"
             v-debounce:500.cancelonempty="cityStore.fetchCities"
-            placeholder="Type a city.."
+            placeholder="Give permission to location or type a city..."
             class="w-full bg-transparent rounded-md border-input text-white border-2 p-3 outline-none"
             @focus="showDropdown = true"
             @blur="shouldHide"

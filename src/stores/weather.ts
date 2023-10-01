@@ -13,7 +13,7 @@ type WeatherType = {
 type WeatherRequest = {
     lat: string;
     lon: string;
-    display_name: string;
+    display_name?: string;
 };
 
 export const useWeatherStore = defineStore("weather", () => {
@@ -45,7 +45,7 @@ export const useWeatherStore = defineStore("weather", () => {
 
     const fetchWeather = async ({ lat, lon, display_name }: WeatherRequest) => {
         city.setLocation({ lat, lon });
-        city.setCity(display_name);
+        if (display_name) city.setCity(display_name);
         try {
             const request = await axios.get(
                 `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&past_days=10&hourly=temperature_2m,relativehumidity_2m,windspeed_10m`

@@ -35,6 +35,18 @@ export const useCityStore = defineStore("city", () => {
         }
     };
 
+    const fetchByLocation = async ({ lat, lon }: LocationType) => {
+        try {
+            const request = await axios.get(
+                `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`
+            );
+
+            city.value = request.data.display_name;
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     const setLocation = ({ lat, lon }: LocationType) => {
         location.lat = lat;
         location.lon = lon;
@@ -52,5 +64,6 @@ export const useCityStore = defineStore("city", () => {
         setLocation,
         setCity,
         location,
+        fetchByLocation,
     };
 });
