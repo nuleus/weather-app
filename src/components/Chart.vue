@@ -107,7 +107,7 @@ const options = {
 </script>
 
 <template>
-    <div v-if="city">
+    <div v-show="city">
         <div class="bg-input w-max mt-6 mb-4 rounded-md flex gap-2 px-1 py-1">
             <button
                 v-for="{ label } in data"

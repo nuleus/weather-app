@@ -9,6 +9,7 @@ const isListActive = ref(false);
 
 const cityStore = useCityStore();
 const weatherStore = useWeatherStore();
+
 const { cities, inputError } = storeToRefs(cityStore);
 
 const shouldHide = () => {
@@ -35,12 +36,12 @@ const shouldHide = () => {
             @mouseleave="isListActive = false"
         >
             <li
+                v-for="{ lat, lon, display_name } in cities"
                 class="p-3 text-white cursor-pointer hover:bg-input"
                 @click="
                     weatherStore.fetchWeather({ lat, lon, display_name }),
                         (showDropdown = false)
                 "
-                v-for="{ lat, lon, display_name } in cities"
             >
                 {{ display_name }}
             </li>
